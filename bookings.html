@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXCELLENCE TRAVEL SOLUTIONS AFRICA - Bookings Dashboard</title>
+    <link rel="stylesheet" href="bookings.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <div class="spinner-wheel"></div>
+            <p>loading...</p>
+        </div>
+    </div>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="Public/services/logos/logo.png" alt="Excellence Travel Solutions Africa Logo">
+                <div class="company-info">
+                    <h1>EXCELLENCE TRAVEL SOLUTIONS AFRICA</h1>
+                    <span class="dashboard-title">Bookings Dashboard</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="booking-container">
+            <div class="contact-drawer">
+                <h3>Contact Information</h3>
+                <div class="email-section">
+                    <label>Gmail Address:</label>
+                    <div class="email-copy-container">
+                        <input type="text" id="emailInput" value="excellencesammy@gmail.com" readonly>
+                        <button class="copy-btn" onclick="copyEmail()">Copy</button>
+                    </div>
+                    <div class="copy-feedback" id="copyFeedback">Email copied to clipboard!</div>
+                </div>
+            </div>
+
+            <div class="booking-section">
+                <h2>Make a Booking</h2>
+                <p>Click the button below to send us a booking request via Gmail</p>
+                <button class="book-button" onclick="bookService()">
+                    <span class="button-icon">📧</span>
+                    Book Now
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <script src="bookings.js"></script>
+</body>
+</html>
