@@ -129,6 +129,7 @@ const forgotPasswordLink = document.querySelector(".forgot-password");
 // Application state
 let isLoginMode = true;
 let isLoading = false;
+let authStateChecked = false; // NEW: Track if auth state has been checked
 
 // Enhanced UI feedback system
 class UIFeedback {
@@ -187,6 +188,12 @@ class UIFeedback {
     successState.style.display = 'block';
     successState.querySelector('p').textContent = message;
     authLogger.logSession('UI_SUCCESS_SHOWN', { message });
+  }
+
+  // NEW: Show auto-redirect loading state
+  static showAutoRedirect(message = 'Welcome back! Redirecting to homepage...') {
+    this.showLoading(message);
+    authLogger.logSession('AUTO_REDIRECT_INITIATED', { message });
   }
 }
 
@@ -281,6 +288,22 @@ const authActions = {
       authLogger.logError(error, 'PASSWORD_RESET_FAILED');
       UIFeedback.showError(this.getErrorMessage(error));
     }
+  },
+
+  // NEW: Handle automatic redirect for existing authenticated users
+  handleAutoRedirect(user) {
+    authLogger.logSession('AUTO_REDIRECT_DETECTED', { 
+      user_id: user.uid,
+      email: user.email,
+      last_sign_in: user.metadata?.lastSignInTime
+    });
+    
+    UIFeedback.showAutoRedirect();
+    
+    // Give user a moment to see the redirect message, then redirect
+    setTimeout(() => {
+      window.location.href = "homepage.html";
+    }, 1500);
   },
 
   getErrorMessage(error) {
@@ -515,12 +538,21 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-// Enhanced auth state observer with comprehensive logging
+// ENHANCED: Auth state observer with automatic redirect functionality
 onAuthStateChanged(auth, (user) => {
   if (user) {
     authLogger.logSuccess('AUTH_STATE_CHANGED_SIGNED_IN', user);
     
-    // Update UI for authenticated user
+    // NEW: Check if this is an automatic detection vs. manual login
+    if (!authStateChecked) {
+      // This is the first time we're checking auth state
+      // If user is already signed in, redirect automatically
+      authStateChecked = true;
+      authActions.handleAutoRedirect(user);
+      return;
+    }
+    
+    // Manual login case - show UI normally
     authForm.style.display = 'none';
     successState.style.display = 'block';
     
@@ -547,6 +579,9 @@ onAuthStateChanged(auth, (user) => {
     
   } else {
     authLogger.logSession('AUTH_STATE_CHANGED_SIGNED_OUT');
+    
+    // Mark that we've checked auth state
+    authStateChecked = true;
     
     // Reset UI for unauthenticated state
     authActions.resetUIToLogin();
@@ -598,13 +633,14 @@ authActions.updateFormMode();
 
 // Log initialization complete
 authLogger.logSession('AUTH_SYSTEM_INITIALIZED', {
-  version: '2.0.0',
+  version: '2.1.0', // Updated version
   features: [
     'enhanced_logging',
     'real_time_validation', 
     'performance_monitoring',
     'error_handling',
     'ui_animations',
-    'responsive_design'
+    'responsive_design',
+    'auto_redirect_detection' // NEW feature
   ]
 });
