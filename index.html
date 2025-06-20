@@ -1,113 +1,365 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>EXCELLENCE TRAVEL SOLUTIONS AFRICA.- Premium Car Booking Platform</title>
+    <meta name="description" content="EXCELLENCE TRAVEL SOLUTIONS AFRICA - Premium car booking platform with secure authentication and seamless booking experience." />
+    <meta name="theme-color" content="#6C5CE7" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="EXCELLENCE TRAVEL SOLUTIONS AFRICA - Premium Car Booking" />
+    <meta property="og:description" content="Experience premium car booking with our secure platform. Book luxury vehicles across Africa with ease." />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:title" content="EXCELLENCE TRAVEL SOLUTIONS AFRICA - Premium Car Booking" />
+    <meta property="twitter:description" content="Experience premium car booking with our secure platform." />
+    
+    <title>EXCELLENCE TRAVEL SOLUTIONS AFRICA - Premium Car Booking Platform</title>
+    
+    <!-- Preconnect to external domains for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+    
+    <!-- Fonts -->
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- Icons -->
     <link
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
       rel="stylesheet"
     />
+    
+    <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css" />
+    
+    <!-- Favicon (add your favicon files) -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
   </head>
+  
   <body>
-    <div class="background-overlay"></div>
-    <div class="container">
-      <div class="brand-header">
-        <h1><i class="fas fa-car-side"></i>EXCELLENCE TRAVEL SOLUTIONS AFRICA. </h1>
-        <p class="tagline">Premium Car Booking Experience</p>
-      </div>
+    <!-- Skip to main content for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <!-- Background Elements -->
+    <div class="background-overlay" aria-hidden="true"></div>
+    <div class="animated-background" aria-hidden="true">
+      <div class="bg-shape bg-shape-1"></div>
+      <div class="bg-shape bg-shape-2"></div>
+      <div class="bg-shape bg-shape-3"></div>
+    </div>
+    
+    <!-- Main Container -->
+    <div class="container" id="main-content">
+      <!-- Brand Header -->
+      <header class="brand-header" role="banner">
+        <div class="brand-content">
+          <h1 class="brand-title">
+            <i class="fas fa-car-side" aria-hidden="true"></i>
+            <span class="brand-name">EXCELLENCE TRAVEL</span>
+            <span class="brand-subtitle">SOLUTIONS AFRICA</span>
+          </h1>
+          <p class="tagline">Premium Car Booking Experience</p>
+        </div>
+        
+        <!-- Status Indicator -->
+        <div class="status-indicator" aria-live="polite">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span class="status-text">Secure Connection</span>
+        </div>
+      </header>
       
-      <form class="auth-form">
-        <div class="form-header">
-          <h2 id="form-title">Welcome Back</h2>
-          <p id="form-subtitle">Sign in to your account</p>
-        </div>
+      <!-- Main Content Area -->
+      <main class="main-content" role="main">
+        <!-- Authentication Form -->
+        <section class="auth-section" aria-labelledby="form-title">
+          <form class="auth-form" novalidate aria-describedby="form-subtitle">
+            <div class="form-header">
+              <h2 id="form-title" class="form-title">Welcome Back</h2>
+              <p id="form-subtitle" class="form-subtitle">Sign in to your account</p>
+            </div>
+            
+            <!-- Email Input Group -->
+            <div class="input-group" data-input-group="email">
+              <label for="username" class="input-label">
+                <i class="fas fa-envelope" aria-hidden="true"></i>
+                <span class="label-text">Email Address</span>
+              </label>
+              <div class="input-wrapper">
+                <input 
+                  type="email" 
+                  id="username" 
+                  name="email"
+                  placeholder="Enter your email" 
+                  required 
+                  autocomplete="email"
+                  aria-describedby="email-error"
+                  class="form-input"
+                />
+                <span class="input-underline" aria-hidden="true"></span>
+                <div class="input-validation" id="email-error" role="alert"></div>
+              </div>
+            </div>
+            
+            <!-- Password Input Group -->
+            <div class="input-group" data-input-group="password">
+              <label for="password" class="input-label">
+                <i class="fas fa-lock" aria-hidden="true"></i>
+                <span class="label-text">Password</span>
+              </label>
+              <div class="input-wrapper">
+                <input 
+                  type="password" 
+                  id="password" 
+                  name="password"
+                  placeholder="Enter your password" 
+                  required 
+                  autocomplete="current-password"
+                  aria-describedby="password-error password-toggle-help"
+                  class="form-input"
+                />
+                <span class="input-underline" aria-hidden="true"></span>
+                <button 
+                  type="button" 
+                  class="password-toggle" 
+                  id="togglePassword"
+                  aria-label="Toggle password visibility"
+                  aria-pressed="false"
+                  aria-describedby="password-toggle-help"
+                >
+                  <i class="fas fa-eye" aria-hidden="true"></i>
+                </button>
+                <div class="input-validation" id="password-error" role="alert"></div>
+                <div id="password-toggle-help" class="sr-only">
+                  Click to show or hide password
+                </div>
+              </div>
+            </div>
+            
+            <!-- Password Strength Indicator (for signup) -->
+            <div class="password-strength" id="passwordStrength" style="display: none;">
+              <div class="strength-meter" aria-label="Password strength">
+                <div class="strength-fill" aria-hidden="true"></div>
+              </div>
+              <span class="strength-text" aria-live="polite">Password strength</span>
+            </div>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn" id="submitBtn" aria-describedby="submit-help">
+              <span class="btn-content">
+                <span class="btn-text">Sign In</span>
+                <div class="btn-loader" aria-hidden="true">
+                  <i class="fas fa-spinner fa-spin"></i>
+                </div>
+              </span>
+              <div class="btn-ripple" aria-hidden="true"></div>
+            </button>
+            <div id="submit-help" class="sr-only">
+              Submit form to sign in to your account
+            </div>
+            
+            <!-- Form Footer -->
+            <div class="form-footer">
+              <a href="#" class="forgot-password" id="forgotPassword">
+                <i class="fas fa-key" aria-hidden="true"></i>
+                Forgot Password?
+              </a>
+              
+              <div class="form-divider" aria-hidden="true">
+                <span>or</span>
+              </div>
+              
+              <p class="switch-mode">
+                <span id="switch-text">Don't have an account?</span>
+                <a href="#" id="toggleMode" class="mode-toggle">
+                  <span class="toggle-text">Sign Up</span>
+                  <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                </a>
+              </p>
+            </div>
+          </form>
+        </section>
         
-        <div class="input-group">
-          <label for="username"><i class="fas fa-envelope"></i></label>
-          <input type="email" id="username" placeholder="Enter your email" required />
-          <span class="input-underline"></span>
-        </div>
-        
-        <div class="input-group">
-          <label for="password"><i class="fas fa-lock"></i></label>
-          <input type="password" id="password" placeholder="Enter your password" required />
-          <span class="input-underline"></span>
-          <button type="button" class="password-toggle" id="togglePassword">
-            <i class="fas fa-eye"></i>
-          </button>
-        </div>
-        
-        <button type="submit" class="submit-btn" id="submitBtn">
-          <span class="btn-text">Sign In</span>
-          <div class="btn-loader">
-            <i class="fas fa-spinner fa-spin"></i>
+        <!-- Car Animation Section -->
+        <section class="animation-section" aria-label="Car animation display">
+          <div class="car-container" role="img" aria-label="Animated luxury car">
+            <div class="car-body">
+              <div class="car-window front-window" aria-hidden="true"></div>
+              <div class="car-window rear-window" aria-hidden="true"></div>
+              <div class="car-details">
+                <div class="car-door-handle" aria-hidden="true"></div>
+                <div class="car-headlight" aria-hidden="true"></div>
+                <div class="car-taillight" aria-hidden="true"></div>
+                <div class="car-badge" aria-hidden="true">
+                  <i class="fas fa-crown"></i>
+                </div>
+              </div>
+            </div>
+            
+            <div class="car-wheels" aria-hidden="true">
+              <div class="wheel front-wheel">
+                <div class="wheel-center"></div>
+                <div class="wheel-spokes">
+                  <div class="wheel-spoke"></div>
+                  <div class="wheel-spoke"></div>
+                  <div class="wheel-spoke"></div>
+                  <div class="wheel-spoke"></div>
+                </div>
+                <div class="wheel-rim"></div>
+              </div>
+              <div class="wheel rear-wheel">
+                <div class="wheel-center"></div>
+                <div class="wheel-spokes">
+                  <div class="wheel-spoke"></div>
+                  <div class="wheel-spoke"></div>
+                  <div class="wheel-spoke"></div>
+                  <div class="wheel-spoke"></div>
+                </div>
+                <div class="wheel-rim"></div>
+              </div>
+            </div>
+            
+            <div class="car-shadow" aria-hidden="true"></div>
+            <div class="car-reflection" aria-hidden="true"></div>
           </div>
-        </button>
-        
-        <div class="form-footer">
-          <a href="#" class="forgot-password">Forgot Password?</a>
-          <p class="switch-mode">
-            <span id="switch-text">Don't have an account?</span>
-            <a href="#" id="toggleMode">Sign Up</a>
-          </p>
-        </div>
-      </form>
-      
-      <!-- Car Animation Container -->
-      <div class="car-container">
-        <div class="car-body">
-          <div class="car-window front-window"></div>
-          <div class="car-window rear-window"></div>
-          <div class="car-door-handle"></div>
-          <div class="car-headlight"></div>
-          <div class="car-taillight"></div>
-        </div>
-        <div class="car-wheels">
-          <div class="wheel front-wheel">
-            <div class="wheel-center"></div>
-            <div class="wheel-spoke"></div>
-            <div class="wheel-spoke"></div>
-            <div class="wheel-spoke"></div>
+          
+          <!-- Animation Controls (Optional) -->
+          <div class="animation-controls" role="group" aria-label="Animation controls">
+            <button type="button" class="animation-toggle" id="animationToggle" aria-pressed="true">
+              <i class="fas fa-pause" aria-hidden="true"></i>
+              <span class="sr-only">Pause animation</span>
+            </button>
           </div>
-          <div class="wheel rear-wheel">
-            <div class="wheel-center"></div>
-            <div class="wheel-spoke"></div>
-            <div class="wheel-spoke"></div>
-            <div class="wheel-spoke"></div>
-          </div>
-        </div>
-        <div class="car-shadow"></div>
-      </div>
+        </section>
+      </main>
       
       <!-- Success State -->
-      <div class="success-state" id="successState" style="display: none;">
-        <div class="success-icon">
-          <i class="fas fa-check-circle"></i>
+      <div class="success-state" id="successState" role="dialog" aria-labelledby="success-title" aria-hidden="true">
+        <div class="success-content">
+          <div class="success-icon" aria-hidden="true">
+            <i class="fas fa-check-circle"></i>
+            <div class="success-ring"></div>
+          </div>
+          <h2 id="success-title" class="success-title">Welcome to EXCELLENCE TRAVEL!</h2>
+          <p class="success-message">Redirecting to your dashboard...</p>
+          
+          <div class="success-actions">
+            <button id="logout" class="logout-btn" type="button">
+              <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
+              <span>Logout</span>
+            </button>
+          </div>
         </div>
-        <h2>Welcome to AutoFlow!</h2>
-        <p>Redirecting to your dashboard...</p>
-        <button id="logout" class="logout-btn">
-          <i class="fas fa-sign-out-alt"></i> Logout
-        </button>
+        <div class="success-particles" aria-hidden="true">
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+        </div>
       </div>
     </div>
 
     <!-- Loading Overlay -->
-    <div class="loading-overlay" id="loadingOverlay">
-      <div class="loading-spinner">
-        <div class="spinner-wheel"></div>
-        <p>Connecting...</p>
+    <div class="loading-overlay" id="loadingOverlay" role="dialog" aria-labelledby="loading-title" aria-hidden="true">
+      <div class="loading-content">
+        <div class="loading-spinner" aria-hidden="true">
+          <div class="spinner-wheel">
+            <div class="spinner-segment"></div>
+            <div class="spinner-segment"></div>
+            <div class="spinner-segment"></div>
+            <div class="spinner-segment"></div>
+          </div>
+        </div>
+        <h3 id="loading-title" class="loading-title">Connecting...</h3>
+        <p class="loading-message">Please wait while we secure your connection</p>
+        <div class="loading-progress" aria-hidden="true">
+          <div class="progress-bar"></div>
+        </div>
       </div>
     </div>
 
+    <!-- Toast Notifications Container -->
+    <div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- Firebase Scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js"></script>
+    
+    <!-- Main Application Script -->
     <script type="module" src="script.js"></script>
+    
+    <!-- Accessibility Enhancement Script -->
+    <script>
+      // Reduced motion support
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('reduced-motion');
+      }
+      
+      // High contrast support
+      if (window.matchMedia('(prefers-contrast: high)').matches) {
+        document.documentElement.classList.add('high-contrast');
+      }
+      
+      // Dark mode support
+      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.classList.add('dark-mode');
+      }
+      
+      // Focus management for modal dialogs
+      const trapFocus = (element) => {
+        const focusableElements = element.querySelectorAll(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+        );
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+        
+        element.addEventListener('keydown', (e) => {
+          if (e.key === 'Tab') {
+            if (e.shiftKey && document.activeElement === firstElement) {
+              e.preventDefault();
+              lastElement.focus();
+            } else if (!e.shiftKey && document.activeElement === lastElement) {
+              e.preventDefault();
+              firstElement.focus();
+            }
+          }
+          
+          if (e.key === 'Escape') {
+            element.style.display = 'none';
+            element.setAttribute('aria-hidden', 'true');
+          }
+        });
+      };
+      
+      // Initialize focus trapping for modals
+      document.addEventListener('DOMContentLoaded', () => {
+        const modals = document.querySelectorAll('[role="dialog"]');
+        modals.forEach(modal => {
+          const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+              if (mutation.type === 'attributes' && mutation.attributeName === 'aria-hidden') {
+                if (modal.getAttribute('aria-hidden') === 'false') {
+                  trapFocus(modal);
+                  modal.focus();
+                }
+              }
+            });
+          });
+          observer.observe(modal, { attributes: true });
+        });
+      });
+    </script>
   </body>
 </html>
