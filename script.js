@@ -237,7 +237,7 @@ const authActions = {
       authLogger.logSuccess('SIGNIN_SUCCESS', userCredential.user);
       authLogger.logPerformance('SIGNIN', duration);
       
-      UIFeedback.showSuccess('Welcome back! Redirecting...');
+      UIFeedback.showSuccess('Welcome back to our E.T.AFRICA services! loading...');
       
       setTimeout(() => {
         window.location.href = "homepage.html";
